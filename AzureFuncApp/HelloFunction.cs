@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 
 namespace AzureFuncApp;
 
@@ -23,14 +23,14 @@ public class HelloFunction
         // Получение параметра из query string
         string name = req.Query["name"];
 
-        // Если не найден в query, пробуем из body
-        if (string.IsNullOrEmpty(name))
-        {
-            using var reader = new StreamReader(req.Body);
-            var requestBody = reader.ReadToEnd();
-            dynamic? data = JsonConvert.DeserializeObject(requestBody);
-            name = data?.name;
-        }
+        //// Если не найден в query, пробуем из body
+        //if (string.IsNullOrEmpty(name))
+        //{
+        //    using var reader = new StreamReader(req.Body);
+        //    var requestBody = reader.ReadToEnd();
+        //    dynamic? data = JsonConvert.DeserializeObject(requestBody);
+        //    name = data?.name;
+        //}
 
         // Ответ
         return name != null
